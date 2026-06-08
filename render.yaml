@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: asa-ticketing-portal-api
+    runtime: node
+    region: singapore
+    plan: free
+    rootDir: backend
+    buildCommand: pnpm install && pnpm build
+    startCommand: pnpm start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: asa-ticketing-portal-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://asa-ticketing-portal.vercel.app
+      - key: SEND_EMAIL_NOTIFICATIONS
+        value: "false"
+      - key: SEND_REAL_NOTIFICATIONS
+        value: "false"
+
+databases:
+  - name: asa-ticketing-portal-db
+    plan: free
+    region: singapore
