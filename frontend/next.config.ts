@@ -8,7 +8,6 @@ const tailwindcssDir = path.dirname(
 );
 
 const nextConfig: NextConfig = {
-  output: "standalone",
   logging: { browserToTerminal: true },
   images: {
     remotePatterns: [
