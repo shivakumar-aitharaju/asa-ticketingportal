@@ -33,6 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.seed = seed;
 require("reflect-metadata");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
@@ -227,8 +228,10 @@ async function seed() {
     }
     await data_source_1.AppDataSource.destroy();
 }
-seed().catch(err => {
-    console.error('\n❌ Seed failed:', err);
-    process.exit(1);
-});
+if (require.main === module) {
+    seed().catch(err => {
+        console.error('\n❌ Seed failed:', err);
+        process.exit(1);
+    });
+}
 //# sourceMappingURL=seed.js.map
